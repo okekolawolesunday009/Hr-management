@@ -21,18 +21,8 @@ const con = mysql.createConnection({
     database:'signup'
 })
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) =>{
-        cb(null, 'public/images')
-    },
-    filename:(req, file, cb)=>{
-        cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
-    }
-})
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: 3 * 1024 }
-});
+export {con, app};
+
 con.connect(function(err){
     if(err){
         console.log('Error in Connection')
@@ -51,6 +41,19 @@ app.put('/home/update/:id', (req,res)=>{
     })
 // console.log(req.body)
 })
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, 'public/images')
+    },
+    filename:(req, file, cb)=>{
+        cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 3 * 1024 }
+});
 app.delete('/home/delete/:id', (req,res)=>{
 
     const id = req.params.id
