@@ -119,8 +119,9 @@ app.post('/home/create',upload.single('image'),(req, res) => {
    })
 
 })
+const port = process.env.PORT || 3001;
 
-app.listen(8080, ()=>{
-    console.log('server running')
+app.listen(port, ()=>{
+    console.log(`server running ${port}`)
 })
 
