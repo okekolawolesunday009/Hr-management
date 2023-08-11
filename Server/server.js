@@ -18,6 +18,7 @@ const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '', 
+    port:'8080',
     database:'signup'
 })
 
@@ -119,7 +120,7 @@ app.post('/home/create',upload.single('image'),(req, res) => {
 
 })
 
-app.listen(8081, ()=>{
-    console.log('server running')
+app.listen(process.env.PORT || PORT, ()=>{
+    console.log(`server running ${PORT}`)
 })
 
