@@ -32,9 +32,12 @@ const con = mysql.createConnection({
 con.connect(function(err){
     if(err){
         console.log('Error in Connection (bad face)')
-    }else{
+    }else if (!err){
         console.log("succesfull lanuch database")
+    }else{
+        console.log("succesfull")
     }
+    
 })
 app.put('/home/update/:id', (req,res)=>{
 
