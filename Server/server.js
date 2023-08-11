@@ -17,7 +17,7 @@ app.use(express.static('public'))
 const con = mysql.createConnection({
     HOST:  process.env.HOST ||  'bf5x39nituhmxk17kth4-mysql.services.clever-cloud.com',
     USER: process.env.USER ||'u4rgk8iwolducmnd',
-    PASSWOR: process.env.PASSWORD || 'r1sx6VpmH2kU3hDaqQOa', 
+    PASSWORD: process.env.PASSWOR || 'r1sx6VpmH2kU3hDaqQOa', 
     PORT: process.env.PORT || '3306',
     DATABASE: process.env.DATABASE ||'bf5x39nituhmxk17kth4'
 })
