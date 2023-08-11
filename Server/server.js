@@ -119,7 +119,7 @@ app.post('/home/create',upload.single('image'),(req, res) => {
    })
 
 })
-export const port = process.env.PORT || 3001;
+export const port = process.env.PORT || 3306;
 
 app.listen(port, ()=>{
     console.log(`server running ${port}`)
