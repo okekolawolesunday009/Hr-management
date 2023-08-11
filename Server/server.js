@@ -15,11 +15,11 @@ app.use(express.static('public'))
 
 
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '', 
-    port:'8080',
-    database:'signup' 
+    HOST: 'localhost',
+    USER: 'root',
+    PASSWORD: '', 
+    PORT:'8080',
+    DATABASE:'signup' 
     // HOST:  process.env.HOST ||  'bf5x39nituhmxk17kth4-mysql.services.clever-cloud.com',
     // USER: process.env.USER ||'u4rgk8iwolducmnd',
     // PASSWORD: process.env.PASSWORD || 'r1sx6VpmH2kU3hDaqQOa', 
