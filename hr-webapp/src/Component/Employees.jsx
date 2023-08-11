@@ -7,7 +7,7 @@ export default function Employees() {
     console.log('del')
    
   
-    axios.delete('http://localhost:8081/home/delete/' + id)
+    axios.delete('http://localhost:8080/home/delete/' + id)
     .then(res => {
         // window.prompt()
         if(res.data.Status === 'success'){
@@ -60,7 +60,7 @@ export default function Employees() {
                         <td>{employee.address}</td>
                         <td>{
                           <img 
-                          src ={`http://localhost:8081/images/` + employee.image}
+                          src ={`http://localhost:8080/images/` + employee.image}
                           className='w-20  h-20 rounded-2xl'
                          alt=""/>  }</td>
                         <td>

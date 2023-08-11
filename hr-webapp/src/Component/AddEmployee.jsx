@@ -38,7 +38,7 @@ export default function AddEmployee() {
         formData.append('password', data.password)
         formData.append('address', data.address)
         formData.append('image', data.image)
-        axios.post('http://localhost:8081/home/create', formData)
+        axios.post('http://localhost:8080/home/create', formData)
         .then(res => console.log(res))
         .catch((err => console.log(err)))
 

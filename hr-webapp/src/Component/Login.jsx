@@ -20,7 +20,7 @@ export default function Login() {
     const navigate = useNavigate()
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('http://localhost:8081/login', formData)
+        axios.post('http://localhost:8080/login', formData)
         .then(res => {
           if(res.data.Status === 'success'){
              navigate('/home')
