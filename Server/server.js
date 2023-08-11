@@ -17,18 +17,18 @@ app.use(express.static('public'))
 const con = mysql.createConnection({
     HOST:  process.env.HOST ||  'bf5x39nituhmxk17kth4-mysql.services.clever-cloud.com',
     USER: process.env.USER ||'u4rgk8iwolducmnd',
-    PASSWORD: process.env.PASSWORD || 'r1sx6VpmH2kU3hDaqQOa', 
+    PASSWOR: process.env.PASSWORD || 'r1sx6VpmH2kU3hDaqQOa', 
     PORT: process.env.PORT || '3306',
     DATABASE: process.env.DATABASE ||'bf5x39nituhmxk17kth4'
 })
 
-export {con, app};
+
 
 con.connect(function(err){
     if(err){
-        console.log('Error in Connection')
+        console.log('Error in Connection (bad face)')
     }else{
-        console.log("succesful")
+        console.log("succesfull lanuch database")
     }
 })
 app.put('/home/update/:id', (req,res)=>{
@@ -122,6 +122,6 @@ app.post('/home/create',upload.single('image'),(req, res) => {
 export const port = process.env.PORT || 3306;
 
 app.listen(port, ()=>{
-    console.log(`server running ${port}`)
+    console.log(`server running ${port} yippe`)
 })
 
