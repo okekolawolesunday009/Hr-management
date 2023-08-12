@@ -15,16 +15,12 @@ app.use(express.static('public'))
 
 
 const con = mysql.createConnection({
-    HOST: 'localhost',
-    USER: 'root',
-    PASSWORD: '', 
-    PORT:'8080',
-    DATABASE:'signup' 
-    // HOST:  process.env.HOST ||  'bf5x39nituhmxk17kth4-mysql.services.clever-cloud.com',
-    // USER: process.env.USER ||'u4rgk8iwolducmnd',
-    // PASSWORD: process.env.PASSWORD || 'r1sx6VpmH2kU3hDaqQOa', 
-    // PORT: process.env.PORT || '3306',
-    // DATABASE: process.env.DATABASE ||'bf5x39nituhmxk17kth4'
+  
+    HOST:  process.env.HOST ||  'bcnh50f1sxyfcp5nsjcm-mysql.services.clever-cloud.com',
+    USER: process.env.USER ||'ul8rrift1n57axgm',
+    PASSWORD: process.env.PASSWORD || 'WYBeBiKULFVU7bY91aO5', 
+    PORT: process.env.PORT || '3306',
+    DATABASE: process.env.DATABASE ||'bcnh50f1sxyfcp5nsjcm'
 })
 
 
