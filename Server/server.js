@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt'
 import  Jwt  from "jsonwebtoken";
 import multer from "multer";
 import path from "path";
+import { waitForDebugger } from "inspector";
 
 const app = express()
 app.use(cors())
@@ -15,19 +16,21 @@ app.use(express.static('public'))
 
 
 const con = mysql.createConnection({
-  
-    HOST:  process.env.HOST ||  'bcnh50f1sxyfcp5nsjcm-mysql.services.clever-cloud.com',
-    USER: process.env.USER ||'ul8rrift1n57axgm',
-    PASSWORD: process.env.PASSWORD || 'WYBeBiKULFVU7bY91aO5', 
-    PORT: process.env.PORT || '3306',
-    DATABASE: process.env.DATABASE ||'bcnh50f1sxyfcp5nsjcm'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DBNAME,
+ waitForConnection: true,
+ connectionLimit: 10,
+ queueList: p0
+ 
 })
 
 
 
 con.connect(function(err){
     if(err){
-        console.log('Error in Connection (bad face)')
+        console.log(console.error('Error in Connection:',err),'Error in Connection (bad face)')
     }else if (!err){
         console.log("succesfull lanuch database")
     }else{
@@ -126,6 +129,6 @@ app.post('/home/create',upload.single('image'),(req, res) => {
 export const port = process.env.PORT || 3306;
 
 app.listen(port, ()=>{
-    console.log(`server running ${port} yippe`)
+    console.log(`server running yippe`)
 })
 
