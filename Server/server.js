@@ -91,7 +91,7 @@ const sql = "SELECT * FROM employee where id = ?"
     })
 })
 app.post('/login', (req, res) => {
-    const sql = 'SELECT * FROM users Where email = ? AND password = ?'
+    const sql = 'SELECT * FROM employees Where email = ? AND password = ?'
     con.query(sql, [req.body.email,req.body.password], (err, result) =>{
         if(err) return res.json({Error: "errr in server"});
         if(result.length > 0){
