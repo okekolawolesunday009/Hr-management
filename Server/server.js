@@ -41,7 +41,7 @@ con.connect(function(err){
 app.put('/home/update/:id', (req,res)=>{
 
     const id = req.params.id
-     const sql = "UPDATE employee set name  = ?, email = ?, address = ? where id = ?"
+     const sql = "UPDATE employees set name  = ?, email = ?, address = ? where id = ?"
     con.query(sql,[req.body.name,req.body.email, req.body.address, id], (err,result) => {
         if(err) return res.json({Error:'error updating geting employee data id'});
         return res.json({Status:  "success", Result: result})
