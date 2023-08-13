@@ -8,7 +8,7 @@ export default function Employees() {
     // https://hr-management-kvqb.onrender.com/
     // https://hr-management-devcheckup.netlify.app
   
-    axios.delete('https://hr-management-devcheckup.netlify.app/home/delete/' + id)
+    axios.delete('https://hr-management-kvqb.onrender.com/home/delete/' + id)
     .then(res => {
         // window.prompt()
         if(res.data.Status === 'success'){
@@ -24,7 +24,7 @@ export default function Employees() {
 }
   const [data, setData] = useState([])
   useEffect(()=>{
-    axios.get('https://hr-management-devcheckup.netlify.app/home/employees')
+    axios.get('https://hr-management-kvqb.onrender.com/home/employees')
     .then(res =>{
       if(res.data.Status === 'success'){
         // console.log(res.data.Result,'ggg')
