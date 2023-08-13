@@ -19,6 +19,7 @@ const con = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
+  port: process.env.PORT,   
   database: process.env.DBNAME,
   waitForConnection: true,
   connectionLimit: 10,
