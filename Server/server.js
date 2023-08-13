@@ -65,16 +65,16 @@ const upload = multer({
 app.delete('/home/delete/:id', (req,res)=>{
 
     const id = req.params.id
-     const sql = "Delete FROM employee WHERE id = ?"
+     const sql = "Delete FROM employees WHERE id = ?"
     con.query(sql,[id], (err,result) => {
-        if(err) return res.json({Error:'error deleting geting employee data id'});
+        if(err) return res.json({Error:'error deleting geting employees data id'});
         return res.json({Status:  "success", Result: result})
 
     })
 // console.log(req.body)
 })
 app.get('/home/employees', (req,res)=>{
-const sql = "SELECT * FROM employee"
+const sql = "SELECT * FROM employees"
     con.query(sql, (err,result) => {
         if(err) return res.json({Error:'error geting sql data'});
         return res.json({Status:  "success", Result: result})
@@ -83,7 +83,7 @@ const sql = "SELECT * FROM employee"
 })
 app.get('/get/:id', (req,res)=>{
     const id = req.params.id
-const sql = "SELECT * FROM employee where id = ?"
+const sql = "SELECT * FROM employees where id = ?"
     con.query(sql,[id], (err,result) => {
         if(err) return res.json({Error:'error geting employee data id'});
         return res.json({Status:  "success", Result: result})
@@ -91,7 +91,7 @@ const sql = "SELECT * FROM employee where id = ?"
     })
 })
 app.post('/login', (req, res) => {
-    const sql = 'SELECT * FROM employees Where email = ? AND password = ?'
+    const sql = 'SELECT * FROM users Where email = ? AND password = ?'
     con.query(sql, [req.body.email,req.body.password], (err, result) =>{
         if(err) return res.json({Error: "errr in server"});
         if(result.length > 0){
@@ -103,7 +103,7 @@ app.post('/login', (req, res) => {
 
 })
 app.post('/home/create',upload.single('image'),(req, res) => {
-   const sql = 'INSERT INTO employee (`name`, `email`,`password`,`address`,`image`) VALUES (?)'
+   const sql = 'INSERT INTO employees (`name`, `email`,`password`,`address`,`image`) VALUES (?)'
    bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
     if(err) return res.json({Error:'error hasshing password'})
     const values = [

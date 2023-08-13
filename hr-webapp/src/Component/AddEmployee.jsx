@@ -38,7 +38,7 @@ export default function AddEmployee() {
         formData.append('password', data.password)
         formData.append('address', data.address)
         formData.append('image', data.image)
-        axios.post('http://localhost:8080/home/create', formData)
+        axios.post('https://hr-management-devcheckup.netlify.app/home/create', formData)
         .then(res => console.log(res))
         .catch((err => console.log(err)))
 

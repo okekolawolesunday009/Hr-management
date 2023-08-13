@@ -20,7 +20,7 @@ export default function Login() {
     const navigate = useNavigate()
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('https://gregarious-banoffee-edf272.netlify.app/login', formData)
+        axios.post('https://hr-management-devcheckup.netlify.app/login', formData)
         .then(res => {
           if(res.data.Status === 'success'){
              navigate('/home')

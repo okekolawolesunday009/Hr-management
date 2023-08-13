@@ -35,7 +35,7 @@ export default function EditEmployee() {
     function handleSubmit(e){
         e.preventDefault()
       
-        axios.put('http://localhost:8080/home/update/' + id, data)
+        axios.put('https://hr-management-devcheckup.netlify.app/home/update/' + id, data)
         .then(res => {
             if(res.data.Status === 'success'){
                 navigate('/home/employees')
@@ -50,7 +50,7 @@ export default function EditEmployee() {
     
 
     useEffect(()=>{
-        axios.get('http://localhost:8080/get/' + id)
+        axios.get('https://hr-management-devcheckup.netlify.app/get/' + id)
         .then(res =>{
             setData({...data, 
                 name:res.data.Result[0].name,

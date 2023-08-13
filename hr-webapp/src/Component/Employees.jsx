@@ -6,8 +6,9 @@ export default function Employees() {
   function handleDelete(id){
     console.log('del')
     // https://hr-management-kvqb.onrender.com/
+    // https://hr-management-devcheckup.netlify.app
   
-    axios.delete( 'https://hr-management-kvqb.onrender.com/home/delete/' + id)
+    axios.delete( 'https://hr-management-devcheckup.netlify.app/home/delete/' + id)
     .then(res => {
         // window.prompt()
         if(res.data.Status === 'success'){
@@ -23,7 +24,7 @@ export default function Employees() {
 }
   const [data, setData] = useState([])
   useEffect(()=>{
-    axios.get('https://hr-management-kvqb.onrender.com/home/employees')
+    axios.get('https://hr-management-devcheckup.netlify.app/home/employees')
     .then(res =>{
       if(res.data.Status === 'success'){
         // console.log(res.data.Result,'ggg')
@@ -60,7 +61,7 @@ export default function Employees() {
                         <td>{employee.address}</td>
                         <td>{
                           <img 
-                          src ={`'https://hr-management-kvqb.onrender.com/images/` + employee.image}
+                          src ={`https://hr-management-devcheckup.netlify.app/images/` + employee.image}
                           className='w-20  h-20 rounded-2xl'
                          alt=""/>  }</td>
                         <td>
