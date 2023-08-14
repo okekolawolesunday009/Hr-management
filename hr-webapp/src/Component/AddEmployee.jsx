@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 export default function AddEmployee() {
     const [data, setData]= useState({
@@ -40,7 +41,10 @@ export default function AddEmployee() {
         formData.append('image', data.image)
         axios.post('https://hr-management-kvqb.onrender.com/home/create', formData)
         .then(res => console.log(res))
-        .catch((err => console.log(err)))
+        .catch((err => {
+          console.log(err)
+          toast.error('Error in adding employee')
+        }))
 
     }
   return (

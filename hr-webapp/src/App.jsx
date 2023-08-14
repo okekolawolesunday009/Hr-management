@@ -10,6 +10,7 @@ import Profile from './Component/Profile'
 import AddEmployee from './Component/AddEmployee'
 import Employees from './Component/Employees'
 import EditEmployees from './Component/EditEmployee'
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -36,6 +37,18 @@ function App() {
        </Routes>
       
       </BrowserRouter>
+      <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+         />
        
         
       

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function Login() {
 
@@ -29,7 +30,10 @@ export default function Login() {
             setError(res.data.Error)
           }
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          console.log(error)
+          toast.error('Not Succesful')
+        })
     }
   return (
   <div className =' flex items-center justify-center  h-screen' >
