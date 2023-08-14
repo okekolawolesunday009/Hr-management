@@ -17,12 +17,11 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // Set up CORS headers
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://hr-management-devcheckup.netlify.app');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+app.use(cors({
+    origin: 'https://hr-management-devcheckup.netlify.app', // Allow requests from this origin
+    methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept', // Allowed headers
+  }));
   
 
 const con = mysql.createConnection({
