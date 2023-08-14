@@ -8,12 +8,22 @@ import multer from "multer";
 import path from "path";
 import { waitForDebugger } from "inspector";
 
+
+
 const app = express()
 app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('public'))
 
+// Set up CORS headers
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://hr-management-devcheckup.netlify.app');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
+  
 
 const con = mysql.createConnection({
   host: process.env.DB_HOST,
