@@ -24,11 +24,13 @@ function App() {
              <Route path= '/home/create' element ={<AddEmployee/>}></Route>
              <Route path= '/home/employees' element ={<Employees/>}></Route>
              <Route path= '/home/employeeEdit/:id' element ={<EditEmployees/>}></Route>
+             <Route path= '/home/profile' element ={<Profile/>}></Route>
+
 
          </Route>
 
          {/* <Route path= 'dashboard' element ={<DashBoard/>}></Route> */}
-         <Route path= '/profile' element ={<Profile/>}></Route>
+         {/* <Route path= '/profile' element ={<Profile/>}></Route> */}
         
 
        </Routes>
