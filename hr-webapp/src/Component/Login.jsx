@@ -21,7 +21,7 @@ export default function Login() {
     const navigate = useNavigate()
     const handleSubmit = (e) =>{
         e.preventDefault() 
-        axios.post('https://hr-frontend.onrender.com/login', formData)
+        axios.post('https://hr-management-kvqb.onrender.com/login', formData)
         .then(res => {
           if(res.data.Status === 'success'){
              navigate('/home')
