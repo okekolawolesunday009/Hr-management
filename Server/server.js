@@ -18,7 +18,8 @@ app.use(express.static('public'))
 
 // Set up CORS headers
 app.use(cors({
-    origin: 'https://hr-management-devcheckup.netlify.app', // Allow requests from this origin
+    origin: ['https://hr-management-devcheckup.netlify.app',
+            'https://hr-management-devcheckup.netlify.app/home'], // Allow requests from this origin
     methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept', // Allowed headers
   }));
