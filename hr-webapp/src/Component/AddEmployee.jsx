@@ -43,7 +43,7 @@ export default function AddEmployee() {
         .then(res => console.log(res))
         .catch((err => {
           console.log(err)
-          toast.error('Error in adding employee')
+        
         }))
 
     }
