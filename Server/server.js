@@ -17,14 +17,18 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // Set up CORS headers
-app.use(cors({
-    origin: ['https://hr-frontend.onrender.com/',
-            'https://hr-frontend.onrender.com/home',
-             'https://hr-frontend.onrender.com/home/create'], // Allow requests from this origin
-    methods: ["GET","POST","PUT","DELETE"], // Allowed HTTP methods
-    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept', // Allowed headers
-  }));
-  
+// app.use(cors({
+//     origin: ['https://hr-frontend.onrender.com/',
+//             'https://hr-frontend.onrender.com/home',
+//              'https://hr-frontend.onrender.com/home/create'], // Allow requests from this origin
+//     methods: ["GET","POST","PUT","DELETE"], // Allowed HTTP methods
+//     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept', // Allowed headers
+//   }));
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
 
 const con = mysql.createConnection({
   host: process.env.DB_HOST,

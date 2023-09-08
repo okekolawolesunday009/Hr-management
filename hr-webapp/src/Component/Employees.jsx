@@ -5,9 +5,6 @@ import axios from 'axios'
 export default function Employees() {
   function handleDelete(id){
     console.log('del')
-    // https://hr-management-kvqb.onrender.com/
-    // https://hr-management-devcheckup.netlify.app
-  
     axios.delete('https://hr-management-kvqb.onrender.com/home/delete/' + id)
     .then(res => {
         // window.prompt()
@@ -61,7 +58,7 @@ export default function Employees() {
                         <td>{employee.address}</td>
                         <td>{
                           <img 
-                          src ={`https://hr-management-devcheckup.netlify.app/api/v1//images/` + employee.image}
+                          src ={`https://hr-management-kvqb.onrender.com/api/v1//images/` + employee.image}
                           className='w-20  h-20 rounded-2xl'
                          alt=""/>  }</td>
                         <td>
