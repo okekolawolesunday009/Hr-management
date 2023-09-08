@@ -58,7 +58,7 @@ export default function Employees() {
                         <td>{employee.address}</td>
                         <td>{
                           <img 
-                          src ={`https://hr-management-kvqb.onrender.com/api/v1//images/` + employee.image}
+                          src ={`https://hr-frontend.onrender.com/api/v1//images/` + employee.image}
                           className='w-20  h-20 rounded-2xl'
                          alt=""/>  }</td>
                         <td>

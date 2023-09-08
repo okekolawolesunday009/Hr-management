@@ -131,7 +131,7 @@ app.post('/home/create',upload.single('image'),(req, res) => {
     ]
     con.query(sql, [values], (err, result) => {
         if(err){
-            return res.json({Error: 'error in singup query'})
+            return res.json({Error: 'error in signup query'})
         }else{
             return res.json({Status:'Success'})
 
