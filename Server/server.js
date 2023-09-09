@@ -120,43 +120,27 @@ app.post('/login', (req, res) => {
 })
 app.post('/home/create',upload.single('image'),(req, res) => {
    const sql = 'INSERT INTO employees (`name`, `email`,`password`,`address`,`image`) VALUES (?)'
-   const values = [
-            req.body.name,
-            req.body.email,
-            hash,
-            req.body.address,
-            req.file.filename
-    
-        ]
-        con.query(sql, [values], (err, result) => {
-            if(err){
-                return res.json({Error: 'error in signup query'})
-            }else{
-                return res.json({Status:'Success'})
-    
-            }
-            
-        })
-//    bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
-//     if(err) return res.json({Error:'error hasshing password'})
-//     const values = [
-//         req.body.name,
-//         req.body.email,
-//         hash,
-//         req.body.address,
-//         req.file.filename
+    bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
+    if(err) return res.json({Error:'error hasshing password'})
+    const values = [
+        req.body.name,
+        req.body.email,
+        hash,
+        req.body.address,
+        req.file.filename
 
-//     ]
-//     con.query(sql, [values], (err, result) => {
-//         if(err){
-//             return res.json({Error: 'error in signup query'})
-//         }else{
-//             return res.json({Status:'Success'})
+    ]
+    con.query(sql, [values], (err, result) => {
+        if(err){
+            return res.json({Error: 'error in signup query'})
+        }else{
+            return res.json({Status:'Success'})
 
-//         }
+        }
         
-//     })
-//    })
+    })
+   })
+
 
 })
 export const port = process.env.PORT || 3306;
