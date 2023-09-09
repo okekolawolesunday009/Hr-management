@@ -118,7 +118,7 @@ app.post('/login', (req, res) => {
     })
 
 })
-app.post('/home/create',upload.single('image'),(req, res) => {
+app.post('/home/create',(req, res) => {
    const sql = 'INSERT INTO employees (`name`, `email`,`password`,`address`,`image`) VALUES (?)'
     bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
     if(err) return res.json({Error:'error hasshing password'})
@@ -127,7 +127,7 @@ app.post('/home/create',upload.single('image'),(req, res) => {
         req.body.email,
         hash,
         req.body.address,
-        req.file.filename
+        ""// req.file.filename
 
     ]
     con.query(sql, [values], (err, result) => {

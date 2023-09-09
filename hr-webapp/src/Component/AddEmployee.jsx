@@ -93,7 +93,7 @@ export default function AddEmployee() {
     </div>
     <div className="flex flex-col mb-4">
     <label htmlFor="address" className="block text-sm font-medium text-gray-700">Select Image</label>
-    <input 
+    <input disabled
     id="image"
     name ='image'
     type="file"
