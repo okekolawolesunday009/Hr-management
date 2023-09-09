@@ -11,11 +11,12 @@ import { waitForDebugger } from "inspector";
 
 
 const app = express()
-// app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('public'))
-
+app.use(cors({
+    origin:"https://hr-frontend.onrender.com"
+}))
 // Set up CORS headers
 // app.use(cors({
 //     origin: ['https://hr-frontend.onrender.com/',
@@ -119,26 +120,43 @@ app.post('/login', (req, res) => {
 })
 app.post('/home/create',upload.single('image'),(req, res) => {
    const sql = 'INSERT INTO employees (`name`, `email`,`password`,`address`,`image`) VALUES (?)'
-   bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
-    if(err) return res.json({Error:'error hasshing password'})
-    const values = [
-        req.body.name,
-        req.body.email,
-        hash,
-        req.body.address,
-        req.file.filename
+   const values = [
+            req.body.name,
+            req.body.email,
+            hash,
+            req.body.address,
+            req.file.filename
+    
+        ]
+        con.query(sql, [values], (err, result) => {
+            if(err){
+                return res.json({Error: 'error in signup query'})
+            }else{
+                return res.json({Status:'Success'})
+    
+            }
+            
+        })
+//    bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
+//     if(err) return res.json({Error:'error hasshing password'})
+//     const values = [
+//         req.body.name,
+//         req.body.email,
+//         hash,
+//         req.body.address,
+//         req.file.filename
 
-    ]
-    con.query(sql, [values], (err, result) => {
-        if(err){
-            return res.json({Error: 'error in signup query'})
-        }else{
-            return res.json({Status:'Success'})
+//     ]
+//     con.query(sql, [values], (err, result) => {
+//         if(err){
+//             return res.json({Error: 'error in signup query'})
+//         }else{
+//             return res.json({Status:'Success'})
 
-        }
+//         }
         
-    })
-   })
+//     })
+//    })
 
 })
 export const port = process.env.PORT || 3306;
