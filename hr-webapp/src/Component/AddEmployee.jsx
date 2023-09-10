@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function AddEmployee() {
@@ -12,7 +13,7 @@ export default function AddEmployee() {
         image: ''
     })
     // const {name,email, password, address, image } = data
-
+    const navigate = useNavigate()
     function handleChange(e){
       // console.log(e.target.files)
 
