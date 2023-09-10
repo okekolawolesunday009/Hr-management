@@ -59,7 +59,7 @@ export default function AddEmployee() {
     </div>
     <div className="flex flex-col mb-4">
     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-    <input 
+    <input required
     onChange={handleChange}
         id="name" 
         name ='name'
