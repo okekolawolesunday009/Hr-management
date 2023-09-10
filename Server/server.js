@@ -7,6 +7,7 @@ import  Jwt  from "jsonwebtoken";
 import multer from "multer";
 import path from "path";
 import { waitForDebugger } from "inspector";
+import { kMaxLength } from "buffer";
 
 
 
@@ -15,23 +16,14 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('public'))
 app.use(cors({
-    origin:"https://hr-frontend.onrender.com"
+    origin:"*"
 }))
-// Set up CORS headers
-// app.use(cors({
-//     origin: ['https://hr-frontend.onrender.com/',
-//             'https://hr-frontend.onrender.com/home',
-//              'https://hr-frontend.onrender.com/home/create'], // Allow requests from this origin
-//     methods: ["GET","POST","PUT","DELETE"], // Allowed HTTP methods
-//     allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept', // Allowed headers
-//   }));
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
 
 const con = mysql.createConnection({
+    // host: 'localhost',
+    // user: 'root',
+    // password: '', 
+    // database:'signup'
   host: process.env.DB_HOST,
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
@@ -118,31 +110,71 @@ app.post('/login', (req, res) => {
     })
 
 })
-app.post('/home/create',(req, res) => {
-   const sql = 'INSERT INTO employees (`name`, `email`,`password`,`address`,`image`) VALUES (?)'
-    bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
-    if(err) return res.json({Error:'error hasshing password'})
-    const values = [
-        req.body.name,
-        req.body.email,
-        hash,
-        req.body.address,
-        ""// req.file.filename
-
-    ]
-    con.query(sql, [values], (err, result) => {
-        if(err){
-            return res.json({Error: 'error in signup query'})
-        }else{
-            return res.json({Status:'Success'})
-
-        }
+app.post('/home/create', upload.single('image'), (req, res) => {
+    console.log(req.body.password, "kola")
+    const sql = 'INSERT INTO employees (`name`, `email`, `password`, `address`, `image`) VALUES (?)';
+    
+    // Check if req.file exists
+    if (req.file) {
+        // File was uploaded, use req.file.filename for the image filename
+        const filename = req.file.filename;
         
-    })
-   })
+        if (req.body.password !== undefined && req.body.password !== null) {
+            bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
+                if (err) {
+                    return res.json({ Error: 'error hashing password' });
+                }
+                const values = [
+                    req.body.name,
+                    req.body.email,
+                    hash,
+                    req.body.address,
+                    filename // Use the uploaded filename
+                ];
+                con.query(sql, [values], (err, result) => {
+                    if (err) {
+                        console.error("Database error:", err.message);
+                        return res.json({ Error: 'error in signup query' });
+                    } else {
+                        console.log("Insert successful:", result);
+                        return res.json({ Status: 'Success' });
+                    }
+                });
+            });
+        } else {
+            return res.json({ Error: 'Password is undefined or null' });
+        }
+    } else {
+        // No file was uploaded, set a default filename (e.g., empty string)
+        const filename = '';
+        if (req.body.password !== undefined && req.body.password !== null) {
+            bcrypt.hash(req.body.password.toString(), 10, (err, hash) => {
+                if (err) {
+                    return res.json({ Error: 'error hashing password' });
+                }
+                const values = [
+                    req.body.name,
+                    req.body.email,
+                    hash,
+                    req.body.address,
+                    filename // Use the default filename
+                ];
+                con.query(sql, [values], (err, result) => {
+                    if (err) {
+                        console.error("Database error:", err.message);
+                        return res.json({ Error: 'error in signup query' });
+                    } else {
+                        console.log("Insert successful:", result);
+                        return res.json({ Status: 'Success' });
+                    }
+                });
+            });
+        } else {
+            return res.json({ Error: 'Password is undefined or null' });
+        }
+    }
+});
 
-
-})
 export const port = process.env.PORT || 3306;
 
 app.listen(port, ()=>{

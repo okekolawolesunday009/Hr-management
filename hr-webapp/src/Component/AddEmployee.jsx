@@ -38,7 +38,9 @@ export default function AddEmployee() {
         formData.append('email', data.email)
         formData.append('password', data.password)
         formData.append('address', data.address)
-        formData.append('image', data.image)
+        if (data.image) {
+          formData.append('image', data.image);
+        }
         axios.post('https://hr-management-kvqb.onrender.com/home/create', formData)
         .then(res => console.log(res))
         .catch((err => {
@@ -93,7 +95,7 @@ export default function AddEmployee() {
     </div>
     <div className="flex flex-col mb-4">
     <label htmlFor="address" className="block text-sm font-medium text-gray-700">Select Image</label>
-    <input disabled
+    <input
     id="image"
     name ='image'
     type="file"
