@@ -42,7 +42,14 @@ export default function AddEmployee() {
           formData.append('image', data.image);
         }
         axios.post('https://hr-management-kvqb.onrender.com/home/create', formData)
-        .then(res => console.log(res))
+        .then(res => {
+          if(res.data.Status === 'success'){
+             navigate('/home/employees')
+
+          }else{
+            setError(res.data.Error)
+          }
+        })
         .catch((err => {
           console.log(err)
         
