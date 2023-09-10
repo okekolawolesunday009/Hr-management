@@ -73,7 +73,7 @@ const upload = multer({
 app.delete('/home/delete/:id', (req,res)=>{
 
     const id = req.params.id
-     const sql = "Delete FROM employees WHERE id = ?"
+     const sql = "Delete FROM employee WHERE id = ?"
     con.query(sql,[id], (err,result) => {
         if(err) return res.json({Error:'error deleting geting employees data id'});
         return res.json({Status:  "success", Result: result})

@@ -66,7 +66,10 @@ export default function Employees() {
                           <button className='bg-blue-600 p-2 rounded-lg text-white font-semibold'>update</button>
                         </Link>
                           </td>
-                        <td><button onClick={e => handleDelete(employee.id)} className='bg-red-600 p-2 rounded-lg text-white font-semibold'>delete</button></td>
+                        <td>
+                          <button onClick={e => handleDelete(employee.id)}
+                            className='bg-red-600 p-2 rounded-lg text-white font-semibold'>delete</button>
+                        </td>
                     </tr>
              
               
