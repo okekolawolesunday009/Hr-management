@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function AddEmployee() {
+  const [error, setError] = useState('')
     const [data, setData]= useState({
         name:'',
         email: '',
@@ -43,15 +44,15 @@ export default function AddEmployee() {
         }
         axios.post('https://hr-management-kvqb.onrender.com/home/create', formData)
         .then(res => {
-          if(res.data.Status === 'success'){
+          if(res.data.Status === 'Success'){
              navigate('/home/employees')
 
           }else{
             setError(res.data.Error)
           }
         })
-        .catch((err => {
-          console.log(err)
+        .catch((error => {
+          console.log(error)
         
         }))
 
