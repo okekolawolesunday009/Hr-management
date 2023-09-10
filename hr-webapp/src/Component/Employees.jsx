@@ -11,7 +11,7 @@ export default function Employees() {
         if(res.data.Status === 'success'){
             window.location.reload(true)
         }else{
-            alert('Error')
+            alert('Error in deleting empolyee')
         }
 
         
